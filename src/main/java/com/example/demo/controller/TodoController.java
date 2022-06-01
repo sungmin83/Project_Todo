@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.ResponseDTO;
+import com.example.demo.service.TodoService;
+
 //import com.example.demo.dto.TodoDTO;
 //import com.example.demo.model.TodoEntity;
 //import com.example.demo.service.TodoService;
@@ -23,12 +25,13 @@ import java.util.List;
 public class TodoController {
 	
 	@Autowired
-	//private TodoService service;
+	private TodoService service;
 	
 	@GetMapping("/test")
 	public ResponseEntity<?> testTodo(){
+		String str = service.testService();
 		List<String> list = new ArrayList<>();
-		list.add("todoResponseEntity");
+		list.add(str);
 		ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
 		return ResponseEntity.ok().body(response);
 	}
